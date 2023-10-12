@@ -101,7 +101,7 @@ def main(args):
     hat_desc = f"{args.groups} groups of {args.minimum}-{args.minimum + args.range - 1}" if args.custom is None else parse_custom_hat(args.custom)
 
     if not args.no_headers:
-        print(f"----- {args.iterations} iterations drawing {args.draws} time(s) from {hat_desc} -----\nMost common: {most_frequent_result}\nAvg: {sum(results) / args.iterations}")
+        print(f"----- {args.iterations} iterations {'in' if args.independent else ''}dependently drawing {args.draws} time(s) from {hat_desc} -----\nMost common: {most_frequent_result}\nAvg: {sum(results) / args.iterations}")
 
     keys_sorted = sorted(num_occurrences.keys())
 
