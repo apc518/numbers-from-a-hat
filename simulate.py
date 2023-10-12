@@ -100,7 +100,8 @@ def main(args):
 
     hat_desc = f"{args.groups} groups of {args.minimum}-{args.minimum + args.range - 1}" if args.custom is None else parse_custom_hat(args.custom)
 
-    print(f"----- {args.iterations} iterations drawing {args.draws} time(s) from {hat_desc} -----\nMost common: {most_frequent_result}\nAvg: {sum(results) / args.iterations}")
+    if not args.no_headers:
+        print(f"----- {args.iterations} iterations drawing {args.draws} time(s) from {hat_desc} -----\nMost common: {most_frequent_result}\nAvg: {sum(results) / args.iterations}")
 
     keys_sorted = sorted(num_occurrences.keys())
 
@@ -138,5 +139,6 @@ if __name__ == "__main__":
     parser.add_argument("-np", "--no-percentages", action="store_true", help="Hide the percentages of occurrences for each result in the chart")
     parser.add_argument("-lr", "--label-right", action="store_true", help="Label the results on the right of the chart rather than the left")
     parser.add_argument("-in", "--independent", action="store_true", help="Makes the draws independent; as if each number is put right back into the hat after drawn.")
+    parser.add_argument("-nh", "--no-headers", action="store_true", help="Disable the headers; the simulation summary and aggregate stats printed above the bar chart.")
     args = parser.parse_args()
     main(args)
